@@ -14,41 +14,47 @@ SEMCMS是一个支持多种语言的外贸网站内容管理系统(CMS)，由于
 
 app="SEMCMS"
 
-![img](file:///C:/Users/20922/AppData/Local/Temp/msohtmlclip1/01/clip_image002.jpg)
+![image](https://github.com/lampSEC/semcms/assets/88041357/ef6cafc1-1ff0-4b49-bd58-abad68a556ea)
 
- 
+![image](https://github.com/lampSEC/semcms/assets/88041357/9f6223b2-c531-4c6f-86ff-4f8ec28c6fcc)
 
-![img](file:///C:/Users/20922/AppData/Local/Temp/msohtmlclip1/01/clip_image004.jpg)
 
 后台地址路径是部署成功随机生成的，本地复现需要搭建漏洞环境，最新php版本源码地址：官网下载地址
 
 http://www.sem-cms.com/TradeCmsdown/php/semcms_php_4.8.zip
 
-![img](file:///C:/Users/20922/AppData/Local/Temp/msohtmlclip1/01/clip_image006.jpg)
+![image](https://github.com/lampSEC/semcms/assets/88041357/8817ca27-7cc1-40e0-b1aa-0608a9be88e5)
+
 
  
 
 ID权限参数拼接sql语句无过滤
 
-![img](file:///C:/Users/20922/AppData/Local/Temp/msohtmlclip1/01/clip_image008.jpg)
+![image](https://github.com/lampSEC/semcms/assets/88041357/c449aff6-00a4-4297-86bc-70e2c0473446)
+
 
 （uid参数是用户的ID，本次复现修改管理员的权限，完成测试后修改数据库进行权限恢复,管理员权限参数为74,76,77,87,88,116,123,170,75,78,79,80,81,82,83,84,89,100,181）
 
-![img](file:///C:/Users/20922/AppData/Local/Temp/msohtmlclip1/01/clip_image010.jpg)
+![image](https://github.com/lampSEC/semcms/assets/88041357/e3ca438c-e988-4cc6-b4d4-15954fd45bd8)
+
 
 构造请求poc
 
-![img](file:///C:/Users/20922/AppData/Local/Temp/msohtmlclip1/01/clip_image012.jpg)
+![image](https://github.com/lampSEC/semcms/assets/88041357/29047e76-a987-4d3c-9f55-40f3eda297b8)
+
 
 管理员权限被修改为77
 
-![img](file:///C:/Users/20922/AppData/Local/Temp/msohtmlclip1/01/clip_image014.jpg)
+![image](https://github.com/lampSEC/semcms/assets/88041357/324feef4-9c03-42e3-bb6a-c99ad3827dac)
+
 
 拼接sql语句进行注入
 
-![img](file:///C:/Users/20922/AppData/Local/Temp/msohtmlclip1/01/clip_image016.jpg)
+![image](https://github.com/lampSEC/semcms/assets/88041357/9bdde0ab-f8e8-4699-9349-c26c118343f9)
 
-![img](file:///C:/Users/20922/AppData/Local/Temp/msohtmlclip1/01/clip_image018.jpg)
+
+![image](https://github.com/lampSEC/semcms/assets/88041357/33f660ae-fcf6-49f1-86cd-61414573fc75)
+
 
  ```
  POST /MtHDbu_Admin/SEMCMS_User.php?CF=fenpei HTTP/1.1
@@ -72,13 +78,15 @@ ID权限参数拼接sql语句无过滤
 
 Sqlmap验证：
 
-![img](file:///C:/Users/20922/AppData/Local/Temp/msohtmlclip1/01/clip_image020.jpg)
+![image](https://github.com/lampSEC/semcms/assets/88041357/90a99dbd-f67b-440d-871d-c66fb1de7db5)
+
 
 测试完成修改数据库管理员权限
 
 74,76,77,87,88,116,123,170,75,78,79,80,81,82,83,84,89,100,181
 
-![img](file:///C:/Users/20922/AppData/Local/Temp/msohtmlclip1/01/clip_image022.jpg)
+![image](https://github.com/lampSEC/semcms/assets/88041357/17b8e1d4-015f-4387-8c2d-4fd69a27a09e)
+
 
 测试完成（如不想变动管理员权限，复现可创建一个测试用户）
 
