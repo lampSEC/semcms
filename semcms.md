@@ -1,54 +1,48 @@
-SEMCMS外贸网站管理系统存在前台sql注入漏洞
+SEMCMS foreign trade website management system has foreground sql injection vulnerability
 
+website address：http://www.sem-cms.com
+Vulnerability Overview:
+
+SEMCMS is a foreign trade website content management system (CMS) that supports multiple languages. Due to the permission assignment function, CF=feipei ID parameter input in SEMCMS_User.php is not filtered, resulting in sql injection vulnerability
  
-
-漏洞概述：
-
-SEMCMS是一个支持多种语言的外贸网站内容管理系统(CMS)，由于权限分配功能处对权限ID参数输入没有过滤，导致存在sql注入漏洞。
-
-官网地址：http://www.sem-cms.com
-
- 
-
-漏洞复现：
 
 app="SEMCMS"
 
-![image](https://github.com/lampSEC/semcms/assets/88041357/ef6cafc1-1ff0-4b49-bd58-abad68a556ea)
-
-![image](https://github.com/lampSEC/semcms/assets/88041357/9f6223b2-c531-4c6f-86ff-4f8ec28c6fcc)
+![图片](https://github.com/lampSEC/semcms/assets/88041357/d0575565-21de-4e1b-b204-ab27abed3b05)
 
 
-后台地址路径是部署成功随机生成的，本地复现需要搭建漏洞环境，最新php版本源码地址：官网下载地址
+Download address
 
 http://www.sem-cms.com/TradeCmsdown/php/semcms_php_4.8.zip
 
 ![image](https://github.com/lampSEC/semcms/assets/88041357/8817ca27-7cc1-40e0-b1aa-0608a9be88e5)
 
 
+ID Permission parameters Concatenate sql statements without filtering
  
 
-ID权限参数拼接sql语句无过滤
+
 
 ![image](https://github.com/lampSEC/semcms/assets/88041357/c449aff6-00a4-4297-86bc-70e2c0473446)
 
 
-（uid参数是用户的ID，本次复现修改管理员的权限，完成测试后修改数据库进行权限恢复,管理员权限参数为74,76,77,87,88,116,123,170,75,78,79,80,81,82,83,84,89,100,181）
+（The uid parameter is the user ID. The administrator permission is modified again this time. After the test is completed, the database is modified to restore the permission ）
+The original permission of the administrator : 74,76,77,87,88,116,123,170,75,78,79,80,81,82,83,84,89,100,181
 
 ![image](https://github.com/lampSEC/semcms/assets/88041357/e3ca438c-e988-4cc6-b4d4-15954fd45bd8)
 
 
-构造请求poc
+poc
 
 ![image](https://github.com/lampSEC/semcms/assets/88041357/29047e76-a987-4d3c-9f55-40f3eda297b8)
 
 
-管理员权限被修改为77
+
 
 ![image](https://github.com/lampSEC/semcms/assets/88041357/324feef4-9c03-42e3-bb6a-c99ad3827dac)
 
 
-拼接sql语句进行注入
+sleep 3 seconds
 
 ![image](https://github.com/lampSEC/semcms/assets/88041357/9bdde0ab-f8e8-4699-9349-c26c118343f9)
 
@@ -76,18 +70,18 @@ ID权限参数拼接sql语句无过滤
 
  
 
-Sqlmap验证：
+Sqlmap authentication ：
 
 ![image](https://github.com/lampSEC/semcms/assets/88041357/90a99dbd-f67b-440d-871d-c66fb1de7db5)
 
 
-测试完成修改数据库管理员权限
+The test is complete. Modify the database administrator rights
 
 74,76,77,87,88,116,123,170,75,78,79,80,81,82,83,84,89,100,181
 
 ![image](https://github.com/lampSEC/semcms/assets/88041357/17b8e1d4-015f-4387-8c2d-4fd69a27a09e)
 
 
-测试完成（如不想变动管理员权限，复现可创建一个测试用户）
+Test completed (If you do not want to change administrator permissions, you can create a test user again)
 
  
